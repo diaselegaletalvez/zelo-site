@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suporte — Zelo</title>
+<link rel="icon" type="image/svg+xml" href="assets/icon-pais.svg">
+<style>
+  :root { --bg:#0B0A0D; --surface:#141317; --surface-2:#1C1B21; --gold:#E7B34A; --text:#F5F3EF; --text-dim:#9A968F; --border:#26242B; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 24px; }
+  nav { border-bottom:1px solid var(--border); background:rgba(11,10,13,.9); position:sticky; top:0; backdrop-filter:blur(12px); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; height:66px; max-width:1080px; margin:0 auto; padding:0 24px; }
+  .logo { display:flex; align-items:center; gap:10px; font-weight:700; font-size:19px; color:var(--text); text-decoration:none; }
+  .logo-mark { width:28px; height:28px; border-radius:8px; background:var(--gold); display:flex; align-items:center; justify-content:center; }
+  .back { color:var(--text-dim); text-decoration:none; font-size:15px; }
+  .back:hover { color:var(--gold); }
+  header { padding:64px 0 28px; }
+  h1 { font-size:38px; font-weight:800; letter-spacing:-1px; margin-bottom:10px; }
+  .lead { color:var(--text-dim); font-size:17px; }
+  main { padding-bottom:80px; }
+
+  .contact {
+    background:var(--surface); border:1px solid var(--gold);
+    border-radius:16px; padding:26px 28px; margin:32px 0 48px;
+  }
+  .contact h2 { font-size:19px; margin-bottom:8px; }
+  .contact p { color:var(--text-dim); margin-bottom:16px; }
+  .mail {
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--gold); color:#14110A;
+    padding:12px 22px; border-radius:10px;
+    font-weight:600; text-decoration:none; font-size:15px;
+  }
+  .mail:hover { opacity:.9; }
+
+  h2.sec { font-size:24px; font-weight:700; margin:44px 0 20px; letter-spacing:-.4px; }
+
+  details {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; margin-bottom:12px; overflow:hidden;
+  }
+  details[open] { border-color:var(--gold); }
+  summary {
+    padding:18px 22px; cursor:pointer; font-weight:600; font-size:16px;
+    list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;
+  }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; color:var(--gold); font-size:20px; font-weight:400; flex-shrink:0; }
+  details[open] summary::after { content:"−"; }
+  .answer { padding:0 22px 20px; color:var(--text-dim); }
+  .answer p { margin-bottom:10px; }
+  .answer p:last-child { margin-bottom:0; }
+  .answer ul { margin:8px 0 8px 20px; }
+  .answer li { margin-bottom:6px; }
+  strong { color:var(--text); }
+  a { color:var(--gold); }
+
+  footer { border-top:1px solid var(--border); padding:40px 0; }
+  .foot { display:flex; gap:22px; flex-wrap:wrap; }
+  .foot a { color:var(--text-dim); text-decoration:none; font-size:14px; }
+  .foot a:hover { color:var(--gold); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">
+        <svg width="17" height="17" viewBox="-90 -90 180 180"><path fill="#14110A" stroke="#14110A" stroke-width="18" stroke-linejoin="round" d="M0,-82 L18,-48 L48,-66 L44,-30 L82,-24 L56,0 L82,24 L44,30 L48,66 L18,48 L0,82 L-18,48 L-48,66 L-44,30 L-82,24 L-56,0 L-82,-24 L-44,-30 L-48,-66 L-18,-48 Z"/></svg>
+      </div>
+      Zelo
+    </a>
+    <a href="index.html" class="back">← Voltar</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header>
+    <h1>Suporte</h1>
+    <p class="lead">Precisa de ajuda? Estamos aqui.</p>
+  </header>
+
+  <main>
+    <div class="contact">
+      <h2>Fale com a gente</h2>
+      <p>Respondemos em até 48 horas úteis. Conte o que aconteceu e, se possível, envie um print da tela.</p>
+      <a href="mailto:suporte@zelo.app.br" class="mail">✉️ suporte@zelo.app.br</a>
+    </div>
+
+    <h2 class="sec">Perguntas frequentes</h2>
+
+    <details>
+      <summary>Como conectar o aparelho do meu filho?</summary>
+      <div class="answer">
+        <p>É simples:</p>
+        <ul>
+          <li>No <strong>Zelo Pais</strong>, toque em "Adicionar filho" e preencha nome, avatar e idade.</li>
+          <li>Um <strong>código de 6 dígitos</strong> será gerado.</li>
+          <li>No iPhone do seu filho, abra o <strong>Zelo</strong> e digite esse código.</li>
+          <li>Pronto — os aparelhos estão conectados.</li>
+        </ul>
+        <p>O código expira em 10 minutos. Se passar do tempo, é só gerar outro.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Por que preciso escolher os apps no aparelho do meu filho?</summary>
+      <div class="answer">
+        <p>Por uma questão de privacidade da Apple. A lista de aplicativos instalados é protegida pelo sistema, e a seleção precisa ser feita <strong>no próprio aparelho</strong> da criança, na área "Administrar" (protegida pelo seu PIN).</p>
+        <p>Depois de escolhidos, todo o controle (pausar, agendar, limitar) é feito remotamente pelo seu celular.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>O Zelo lê as mensagens do meu filho?</summary>
+      <div class="answer">
+        <p><strong>Não.</strong> E queremos ser bem claros: nenhum aplicativo de controle parental consegue ler mensagens no iPhone — a Apple não permite isso para nenhum app, nem para nós, nem para os concorrentes.</p>
+        <p>O Zelo bloqueia e gerencia aplicativos usando a tecnologia oficial da Apple, mas não acessa o conteúdo dentro deles.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>O bloqueio funciona com o app fechado?</summary>
+      <div class="answer">
+        <p>Sim para <strong>rotinas (horários)</strong> e <strong>limite diário</strong> — essas regras são registradas no sistema da Apple e funcionam mesmo com o Zelo fechado.</p>
+        <p>O <strong>"Pausar tudo"</strong> (bloqueio imediato) funciona melhor com o aparelho conectado à internet.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Como funciona a localização?</summary>
+      <div class="answer">
+        <p>A localização é <strong>opcional</strong>. Para ativar, vá na área "Administrar" do aparelho do seu filho e ative o recurso — o iPhone vai pedir permissão de localização "Sempre".</p>
+        <p>Depois disso, você vê a posição no mapa, o histórico do trajeto e pode criar <strong>cercas</strong> (casa, escola) para receber avisos de chegada e saída.</p>
+        <p>Para economizar bateria, a posição é atualizada quando o aparelho se desloca de forma significativa — não a cada segundo.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Como cancelar a assinatura?</summary>
+      <div class="answer">
+        <p>A assinatura é gerenciada pela Apple. Para cancelar:</p>
+        <ul>
+          <li>Abra os <strong>Ajustes</strong> do iPhone.</li>
+          <li>Toque no seu nome (conta Apple) → <strong>Assinaturas</strong>.</li>
+          <li>Selecione o <strong>Zelo</strong> e toque em Cancelar.</li>
+        </ul>
+        <p>Você continua com acesso até o fim do período já pago.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Como apagar minha conta e meus dados?</summary>
+      <div class="answer">
+        <p>No <strong>Zelo Pais</strong>, vá em <strong>Conta → Apagar conta</strong>. Isso remove permanentemente sua conta, os perfis das crianças, as regras e os dados de localização.</p>
+        <p><strong>Atenção:</strong> antes de apagar, recomendamos desvincular os aparelhos das crianças (no app do filho: Administrar → Desvincular deste dispositivo), para garantir que nenhum bloqueio permaneça ativo.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Esqueci meu PIN de administrador. E agora?</summary>
+      <div class="answer">
+        <p>O PIN protege a área "Administrar" no aparelho da criança. Se você esqueceu, será necessário desvincular e parear o dispositivo novamente pelo Zelo Pais (gerando um novo código de pareamento).</p>
+        <p>Se tiver dificuldade, entre em contato conosco.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Funciona em Android?</summary>
+      <div class="answer">
+        <p>Ainda não. O Zelo é, por enquanto, exclusivo para <strong>iPhone (iOS)</strong>. Uma versão para Android está em nossos planos.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Quantos filhos posso adicionar?</summary>
+      <div class="answer">
+        <p>Quantos você quiser — a assinatura cobre <strong>filhos ilimitados</strong>. Cada um precisa de um iPhone com o app Zelo instalado.</p>
+      </div>
+    </details>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <a href="index.html">Início</a>
+    <a href="privacidade.html">Política de Privacidade</a>
+    <a href="termos.html">Termos de Uso</a>
+  </div>
+</footer>
+
+</body>
+</html>

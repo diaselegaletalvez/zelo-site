@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zelo — Controle Parental para iPhone</title>
+<meta name="description" content="Zelo é o controle parental brasileiro para iPhone. Bloqueie apps, defina rotinas, limite o tempo de tela e acompanhe a localização do seu filho.">
+<link rel="icon" type="image/svg+xml" href="assets/icon-pais.svg">
+<style>
+  :root {
+    --bg: #0B0A0D;
+    --surface: #141317;
+    --surface-2: #1C1B21;
+    --gold: #E7B34A;
+    --gold-dim: #C98A2E;
+    --text: #F5F3EF;
+    --text-dim: #9A968F;
+    --border: #26242B;
+    --emerald: #28E0B0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11,10,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; letter-spacing: -0.3px; }
+  .logo-mark {
+    width: 30px; height: 30px; border-radius: 9px;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 15px; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* HERO */
+  header { padding: 96px 0 80px; text-align: center; }
+  .badge {
+    display: inline-block;
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(231,179,74,0.1);
+    border: 1px solid rgba(231,179,74,0.25);
+    color: var(--gold);
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  h1 .accent { color: var(--gold); }
+  .sub {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-dim);
+    max-width: 620px; margin: 0 auto 36px;
+  }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; border-radius: 12px;
+    font-weight: 600; font-size: 16px; text-decoration: none;
+    transition: transform .15s, box-shadow .2s;
+  }
+  .btn-primary {
+    background: var(--gold); color: #14110A;
+    box-shadow: 0 6px 24px rgba(231,179,74,0.22);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(231,179,74,0.32); }
+  .btn-ghost {
+    background: var(--surface-2); color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--gold-dim); }
+
+  /* SECTIONS */
+  section { padding: 80px 0; border-top: 1px solid var(--border); }
+  .sec-title {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700; letter-spacing: -0.8px;
+    text-align: center; margin-bottom: 14px;
+  }
+  .sec-sub { color: var(--text-dim); text-align: center; max-width: 560px; margin: 0 auto 52px; }
+
+  /* FEATURES */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 24px;
+    transition: border-color .2s, transform .2s;
+  }
+  .card:hover { border-color: var(--gold-dim); transform: translateY(-3px); }
+  .card-icon { font-size: 30px; margin-bottom: 14px; display: block; }
+  .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .card p { color: var(--text-dim); font-size: 15px; }
+
+  /* HOW */
+  .steps { display: grid; gap: 18px; max-width: 720px; margin: 0 auto; }
+  .step {
+    display: flex; gap: 18px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 22px 24px;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 34px; height: 34px; border-radius: 10px;
+    background: rgba(231,179,74,0.12); border: 1px solid rgba(231,179,74,0.3);
+    color: var(--gold); font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step h4 { font-size: 16px; margin-bottom: 4px; }
+  .step p { color: var(--text-dim); font-size: 15px; }
+
+  /* PRICING */
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 760px; margin: 0 auto; }
+  .plan {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px 28px; text-align: center;
+    position: relative;
+  }
+  .plan.featured { border-color: var(--gold); background: linear-gradient(180deg, rgba(231,179,74,0.06), var(--surface)); }
+  .plan-tag {
+    position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #14110A;
+    font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  }
+  .plan h3 { font-size: 17px; color: var(--text-dim); font-weight: 600; margin-bottom: 10px; }
+  .price { font-size: 40px; font-weight: 800; letter-spacing: -1px; }
+  .price span { font-size: 16px; color: var(--text-dim); font-weight: 500; }
+  .plan .save { color: var(--emerald); font-size: 14px; font-weight: 600; margin-top: 6px; }
+  .plan ul { list-style: none; text-align: left; margin: 24px 0 0; }
+  .plan li { color: var(--text-dim); font-size: 15px; padding: 7px 0; }
+  .plan li::before { content: "✓"; color: var(--gold); font-weight: 700; margin-right: 9px; }
+
+  /* HONEST NOTE */
+  .note {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 12px; padding: 22px 24px;
+    max-width: 720px; margin: 44px auto 0;
+  }
+  .note strong { color: var(--gold); }
+  .note p { color: var(--text-dim); font-size: 15px; }
+
+  /* FOOTER */
+  footer { padding: 56px 0 40px; border-top: 1px solid var(--border); }
+  .foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  .foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .foot-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; }
+  .foot-links a:hover { color: var(--gold); }
+  .copy { color: #5D5A56; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg width="18" height="18" viewBox="-90 -90 180 180"><path fill="#14110A" stroke="#14110A" stroke-width="18" stroke-linejoin="round" d="M0,-82 L18,-48 L48,-66 L44,-30 L82,-24 L56,0 L82,24 L44,30 L48,66 L18,48 L0,82 L-18,48 L-48,66 L-44,30 L-82,24 L-56,0 L-82,-24 L-44,-30 L-48,-66 L-18,-48 Z"/></svg>
+      </div>
+      Zelo
+    </div>
+    <div class="nav-links">
+      <a href="#recursos">Recursos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#planos">Planos</a>
+      <a href="suporte.html">Suporte</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <span class="badge">Feito no Brasil · para iPhone</span>
+    <h1>Cuide do tempo de tela<br>do seu filho com <span class="accent">Zelo</span></h1>
+    <p class="sub">Bloqueie apps, crie rotinas, defina limites de tempo e acompanhe a localização — tudo do seu celular, com privacidade e sem complicação.</p>
+    <div class="cta-row">
+      <a href="#planos" class="btn btn-primary">Ver planos</a>
+      <a href="#como-funciona" class="btn btn-ghost">Como funciona</a>
+    </div>
+  </div>
+</header>
+
+<section id="recursos">
+  <div class="wrap">
+    <h2 class="sec-title">Tudo que você precisa</h2>
+    <p class="sec-sub">Controle real, feito com a tecnologia oficial da Apple para famílias.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">⏸️</span>
+        <h3>Pausar tudo</h3>
+        <p>Um toque e os apps do seu filho são bloqueados na hora. Hora do jantar, do dever, do descanso.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌙</span>
+        <h3>Rotinas e horários</h3>
+        <p>Defina janelas como "hora de dormir" e "hora da escola". Os apps bloqueiam sozinhos, todo dia.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⏳</span>
+        <h3>Limite diário</h3>
+        <p>Escolha quanto tempo por dia. Ao atingir o limite, os apps são bloqueados automaticamente.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔒</span>
+        <h3>Apps sempre bloqueados</h3>
+        <p>Alguns apps você simplesmente não quer. Bloqueie 24 horas por dia, sem exceção.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">✅</span>
+        <h3>Apps sempre liberados</h3>
+        <p>Telefone, mensagens, apps de estudo. Escolha o que nunca deve ser bloqueado.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📍</span>
+        <h3>Localização e cercas</h3>
+        <p>Veja onde seu filho está e receba avisos quando ele chega ou sai de casa e da escola.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🆘</span>
+        <h3>Botão de emergência</h3>
+        <p>Seu filho aciona o SOS e liga direto para o contato que você configurou.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">♿</span>
+        <h3>Acessibilidade</h3>
+        <p>Texto maior, modo dislexia, menos animações e alto contraste. Para todas as crianças.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎁</span>
+        <h3>Recompensas</h3>
+        <p>Seu filho acumula pontos por bom comportamento e troca por recompensas que você define.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <h2 class="sec-title">Como funciona</h2>
+    <p class="sec-sub">São dois apps: um no seu celular, outro no do seu filho.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Baixe o Zelo Pais no seu iPhone</h4>
+          <p>Crie sua conta e adicione o perfil do seu filho — nome, avatar e idade.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Instale o Zelo no iPhone do seu filho</h4>
+          <p>O app gera um código de 6 dígitos. Digite no aparelho dele e pronto — os dois estão conectados.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Escolha os apps e configure as regras</h4>
+          <p>No aparelho do seu filho, selecione quais apps o Zelo vai gerenciar. Depois, tudo é controlado do seu celular.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h4>Controle de onde estiver</h4>
+          <p>Pause, agende, limite e acompanhe — do seu iPhone, a qualquer momento.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><strong>Transparência:</strong> o Zelo usa a tecnologia oficial da Apple (Screen Time / Family Controls). Por isso, ele bloqueia e gerencia apps com segurança — mas <strong>não lê mensagens, conversas ou histórico de navegação</strong>. A Apple não permite isso para nenhum aplicativo, e nós respeitamos essa privacidade.</p>
+    </div>
+  </div>
+</section>
+
+<section id="planos">
+  <div class="wrap">
+    <h2 class="sec-title">Planos</h2>
+    <p class="sec-sub">Assinatura simples, sem pegadinha. Cancele quando quiser.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Mensal</h3>
+        <div class="price">R$ 19,90<span>/mês</span></div>
+        <ul>
+          <li>Todos os recursos</li>
+          <li>Filhos ilimitados</li>
+          <li>Cancele quando quiser</li>
+        </ul>
+      </div>
+      <div class="plan featured">
+        <span class="plan-tag">MELHOR VALOR</span>
+        <h3>Anual</h3>
+        <div class="price">R$ 149,90<span>/ano</span></div>
+        <div class="save">Economize 37%</div>
+        <ul>
+          <li>Todos os recursos</li>
+          <li>Filhos ilimitados</li>
+          <li>Menos de R$ 12,50 por mês</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-links">
+      <a href="privacidade.html">Política de Privacidade</a>
+      <a href="termos.html">Termos de Uso</a>
+      <a href="suporte.html">Suporte</a>
+    </div>
+    <div class="copy">© 2026 Zelo · Dias Inc.</div>
+  </div>
+</footer>
+
+</body>
+</html>
